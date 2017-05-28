@@ -631,7 +631,7 @@ struct CalibrationScene {
     oglplus::Program prog;
     oglplus::VertexArray vao;
 
-    CalibrationScene() : line("Position", oglplus::shapes::Grid({ 0, 0, -100 }, { 100.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.01f }, 1, 1)) {
+    CalibrationScene() : line("Position", oglplus::shapes::Grid({ 0, 0, -50 }, { 100.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.01f }, 1, 1)) {
         static const char * VERTEX_SHADER = R"SHADER(
 #version 410 core
 
@@ -848,14 +848,14 @@ protected:
                     case PITCH:
                         tracking = ovr_GetTrackingState(_session, 0, false);
                         correctEuler.x = glm::eulerAngles(ovr::toGlm(tracking.HeadPose.ThePose.Orientation)).x / INPUT_SCALE;
-                        std::cout << correctEuler.x << std::endl;
+						std::cout << "X: " << correctEuler.x << std::endl;
                         step = YAW;
                         break;
 
                     case YAW:
                         tracking = ovr_GetTrackingState(_session, 0, false);
                         correctEuler.y = glm::eulerAngles(ovr::toGlm(tracking.HeadPose.ThePose.Orientation)).y / INPUT_SCALE;
-                        std::cout << correctEuler.y << std::endl;
+                        std::cout << "Y: " << correctEuler.y << std::endl;
                         step = DONE;
                         break;
 
